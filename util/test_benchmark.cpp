@@ -12,6 +12,6 @@ void long_operation(int millis)
 
 int main()
 {
-    double x = benchmark(10, long_operation, 150);
-    cout << x << endl;
+    long timeTaken = benchmark(10, long_operation, 150);
+    cout << timeTaken << endl;
 }
