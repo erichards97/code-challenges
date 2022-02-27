@@ -4,22 +4,35 @@
 #include <algorithm>
 #include <cmath>
 
+/**
+ * @brief Sums the natural numbers up to and including n.
+ * 
+ * @param n The number to sum until (inclusive).
+ * @return int The sum of the numbers 1,2,3,...,n
+ */
 int sumNaturalNumbers(int n)
 {
     return (n * (n + 1)) / 2;
 }
 
-std::vector<int> filterDivisorMultiples(std::vector<int> divisors)
+/**
+ * @brief Filters multiples of numbers present in a given vector. 
+ * E.g. {2, 3, 4, 6, 7} returns {2, 3, 7}
+ * 
+ * @param numbers A vector of integers.
+ * @return std::vector<int> The unique factors from the given integer vector.
+ */
+std::vector<int> filterMultiples(std::vector<int> numbers)
 {
-    std::vector<int> uniqueDivisors;
+    std::vector<int> factors;
 
-    std::sort(divisors.begin(), divisors.end(), std::greater<int>());
+    std::sort(numbers.begin(), numbers.end(), std::greater<int>());
 
     bool shouldAdd;
-    for (std::vector<int>::iterator iter1 = divisors.begin(); iter1 != divisors.end(); ++iter1)
+    for (std::vector<int>::iterator iter1 = numbers.begin(); iter1 != numbers.end(); ++iter1)
     {
         shouldAdd = true;
-        for (std::vector<int>::iterator iter2 = iter1; ++iter2 != divisors.end();)
+        for (std::vector<int>::iterator iter2 = iter1; ++iter2 != numbers.end();)
         {
             if (*iter1 % *iter2 == 0)
             {
@@ -29,13 +42,21 @@ std::vector<int> filterDivisorMultiples(std::vector<int> divisors)
         }
         if (shouldAdd)
         {
-            uniqueDivisors.push_back(*iter1);
+            factors.push_back(*iter1);
         }
     }
 
-    return uniqueDivisors;
+    return factors;
 }
 
+/**
+ * @brief Sums the numbers less than or equal to max, which are divisible by the divisor.
+ * E.g. sumDivisibleNumbers(3,12) returns 3+6+9+12.
+ * 
+ * @param divisor The divisor.
+ * @param max The upper-limit (inclusive).
+ * @return int The sum of the numbers divisible by the divisor.
+ */
 int sumDivisibleNumbers(int divisor, int max)
 {
     int numDivisible = floor(max / divisor);
@@ -48,7 +69,7 @@ int sumMultipleDivisible(std::vector<int> divisors, int max)
     int sum = 0;
     int sumRemove = 0;
 
-    std::vector<int> uniqueDivisors = filterDivisorMultiples(divisors);
+    std::vector<int> uniqueDivisors = filterMultiples(divisors);
 
     for (int i = 0; i < uniqueDivisors.size(); i++)
     {
