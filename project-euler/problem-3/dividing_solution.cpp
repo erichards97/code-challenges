@@ -29,7 +29,13 @@ long getNextPrime(long current, std::vector<long> primes)
     return i;
 }
 
-long getPrimeFactor(long num)
+/**
+ * @brief Repeatedly divide factors of the given number by the smallest possible prime, until we reach the larget prime factor.
+ * 
+ * @param num The number for which we should find the largest prime factor.
+ * @return long The largest prime factor of the given number.
+ */
+long getLargestPrimeFactor(long num)
 {
     std::vector<long> primes = {1, 2};
 
@@ -58,5 +64,5 @@ int main()
     std::cout << "Enter the number for which I should find the largest prime factor: ";
     std::cin >> number;
 
-    std::cout << getPrimeFactor(number) << std::endl;
+    std::cout << getLargestPrimeFactor(number) << std::endl;
 }
