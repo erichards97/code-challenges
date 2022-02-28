@@ -1,0 +1,5 @@
+general_solution calculates the fibonacci sequence upto the max value, then sums every 3rd element, starting from 2.
+
+summing_solution avoids storing the whole sequence, instead summing the relevant numbers along the way.
+
+Both solutions avoid repeating work by storing the last 2 fibonacci numbers in order to calculate the next one.
